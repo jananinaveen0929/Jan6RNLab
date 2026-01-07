@@ -1,11 +1,42 @@
+import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Alert, Button } from 'react-native';
 
 export default function App() {
+  const [name, setName] = useState('');
+  const [displayName, setDisplayName] = useState('');
+
+  const handleSubmit = () => {
+    if (name.trim()) {
+      setDisplayName(name);
+      Alert.alert('Welcome!', `Hello, ${name}!`);
+    } else {
+      Alert.alert('Error', 'Please enter your name');
+      setDisplayName();
+    }
+  };
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <Text style={styles.title}>My First Lab Jan 6!</Text>
       <StatusBar style="auto" />
+      
+      <Text style={styles.title}>What's Your Name?</Text>
+      
+      <TextInput
+        style={styles.input}
+        placeholder="Enter your name"
+        value={name}
+        onChangeText={setName}
+      />
+      
+      <Button title="Submit" onPress={handleSubmit} />
+      
+      {displayName ? (
+        <Text style={styles.displayText}>
+          Hello, {displayName}!
+        </Text>
+      ) : null}
     </View>
   );
 }
@@ -13,8 +44,32 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#20205fff',
     alignItems: 'center',
     justifyContent: 'center',
+    padding: 20,
   },
-});
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 30,
+    color: '#fff',
+  },
+  input: {
+    width: '100%',
+    height: 50,
+    borderWidth: 1,
+    borderColor: '#ddd',
+    borderRadius: 8,
+    paddingHorizontal: 15,
+    fontSize: 16,
+    backgroundColor: '#fff',
+    marginBottom: 20,
+  },
+  displayText: {
+    marginTop: 30,
+    fontSize: 20,
+    color: '#fff',
+    fontWeight: '500',
+  },
+});r5
