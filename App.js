@@ -12,7 +12,7 @@ export default function App() {
       Alert.alert('Welcome!', `Hello, ${name}!`);
     } else {
       Alert.alert('Error', 'Please enter your name');
-      setDisplayName();
+      setDisplayName('');
     }
   };
 
@@ -33,9 +33,15 @@ export default function App() {
       <Button title="Submit" onPress={handleSubmit} />
       
       {displayName ? (
+        <View style={styles.greetingContainer}>
         <Text style={styles.displayText}>
           Hello, {displayName}!
         </Text>
+        <Image
+            source={{ uri: 'https://picsum.photos/200/200' }}
+            style={styles.image}
+          />
+        </View>
       ) : null}
     </View>
   );
@@ -66,10 +72,19 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     marginBottom: 20,
   },
+  greetingContainer: {
+    marginTop: 30,
+    alignItems: 'center',
+  },
   displayText: {
     marginTop: 30,
     fontSize: 20,
     color: '#fff',
     fontWeight: '500',
   },
-});r5
+  image: {
+    width: 200,
+    height: 200,
+    borderRadius: 10,
+  },
+});
