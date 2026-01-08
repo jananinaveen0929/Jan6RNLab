@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TextInput, Alert, Button } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Alert, Button, Image } from 'react-native';
 
 export default function App() {
   const [name, setName] = useState('');
@@ -38,7 +38,7 @@ export default function App() {
           Hello, {displayName}!
         </Text>
         <Image
-            source={{ uri: 'https://picsum.photos/200/200' }}
+            source={require('./assets/leaf.png')}
             style={styles.image}
           />
         </View>
